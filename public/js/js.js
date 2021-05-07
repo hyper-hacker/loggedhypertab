@@ -7,7 +7,7 @@ function getUrl(x) {
   const urlThing = urlBarcontents
     .match(/http(s?):\/\/(([a-z0-9]|\-|\_|\.){1,999})/gi);
   if (urlThing === null) throw Error('Invalid URL ' + urlBarcontents);
-  const b64Url = '_' + btoa(urlThing[0]) + '_' + urlBarcontents.replace(urlThing[0], '');
+  const b64Url = urlBarcontents;
   return b64Url;
 }
 const getActiveFrameId = () => +document.querySelector(".chrome-tab[active]").getAttribute("ifd") + 1;
@@ -58,12 +58,12 @@ function getBookmark() {
 };
 function setinfo(aa) {
   document.getElementsByClassName(aa)[0].firstChild.data = document.getElementById(aa).contentWindow.document.title;
-  if (!document.getElementById(aa).contentWindow.location.href.includes('/fetch/')) {
+  if (!document.getElementById(aa).contentWindow.location.href.includes('/main/')) {
     addPageToHistory(aa, document.getElementById(aa).contentWindow.location.href);
     return;
   }
   let regUrl = document.getElementById(aa).contentWindow.location.href;
-  regUrl = regUrl.split('/fetch/').slice(1).join('/fetch/');
+  regUrl = regUrl.split('/main/').slice(1).join('/main/');
   let b64Url = decodeUrl(regUrl);
   if (getActiveFrameId() === +aa) {
     document.getElementById('urlbar').value = b64Url;
@@ -74,14 +74,14 @@ function setinfo(aa) {
 function action(a) {
   let value = document.getElementById('urlbar');
   if (value === '') {
-        alert('Please insert a URL');
+    alert('Please insert a URL');
   } else if (!value.value.includes('http')) {
     value.value = "http://" + value.value;
     let b64URL = getUrl();
-    document.getElementById(getActiveFrameId()).src = "https://notsus1.herokuapp.com/fetch/" + getUrl();
+    document.getElementById(getActiveFrameId()).src = "/main/" + getUrl();
   } else {
     let b64URL = getUrl();
-    document.getElementById(getActiveFrameId()).src = "https://notsus1.herokuapp.com/fetch/" + getUrl();
+    document.getElementById(getActiveFrameId()).src = "/main/" + getUrl();
   }
 }
 function hideId(...x) {
@@ -118,7 +118,7 @@ function openMenu(...x) {
   }
 }
 function inspect() {
-  (function () { var script = document.createElement('script'); script.src = 'js/inspect.js'; script.className = 'webxray'; script.setAttribute('data-lang', 'en-US'); script.setAttribute('data-baseuri', 'https://notsus1.herokuapp.com/fetch/_aHR0cHM6Ly94LXJheS1nb2dnbGVzLm1vdXNlLm9yZw==_/'); document.body.appendChild(script); }())
+  (function () { var script = document.createElement('script'); script.src = 'js/inspect.js'; script.className = 'webxray'; script.setAttribute('data-lang', 'en-US'); script.setAttribute('data-baseuri', 'https://x-ray-goggles.mouse.org'); document.body.appendChild(script); }())
 }
 function opencity(a) {
   tc = document.getElementsByClassName('iframething');
@@ -135,7 +135,7 @@ function opencity(a) {
       break;
     default:
       let regUrl = document.getElementById(a).contentWindow.location.href;
-      regUrl = regUrl.split('/fetch/').slice(1).join('/fetch/');
+      regUrl = regUrl.split('/main/').slice(1).join('/main/');
       let b64Url = decodeUrl(regUrl);
       if (getActiveFrameId() === +a) {
         document.getElementById('urlbar').value = b64Url;
