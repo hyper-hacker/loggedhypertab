@@ -1,7 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  var user=getCookie("username");
+  if (user != "") {
+    alert("Welcome again " + user);
+  } else {
+  location.assign("/login.html");
+
+     }
+  }
+</script>
+<body onload="checkCookie()"></body>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 /* Center the loader */
 #loader {
@@ -72,43 +101,15 @@
 <meta name="googlebot" content="index, follow, snippet"/>
 <meta name="keywords" content="Titanium Network, Hypertabs, Securly, iboss, Relay, Lightspeed, Bypass, Chromebooks, Alloy">
 <meta name="theme-color" content="#B48EAD">
-  <link href='https://hypertaboffical.com/css/demo.css' rel='stylesheet'>
-  <link href='https://hypertaboffical.com/css/chrome-tabs.css' rel='stylesheet'>
-  <link href='https://hypertaboffical.com/css/chrome-tabs-dark-theme.css' rel='stylesheet'>
+  <link href='css/demo.css' rel='stylesheet'>
+  <link href='css/chrome-tabs.css' rel='stylesheet'>
+  <link href='css/chrome-tabs-dark-theme.css' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
 
 </head>
-<script>
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function checkCookie() {
-  var user=getCookie("username");
-  if (user != "") {
-    alert("Welcome again " + user);
-  } else {
-  location.assign("https://hypertaboffical.com/login.html");
-
-     }
-  }
-</script>
 
 </head>
 
-<body onload="checkCookie()"></body>
 <body id="alpha">
   <div class='surface'>
     <div class='mock-browser'>
@@ -200,8 +201,8 @@ function checkCookie() {
       </div>
     </div>
     <script src='https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js'></script>
-    <script src='https://hypertaboffical.com/js/chrome-tabs.js'></script>
-    <script src='https://hypertaboffical.com/js/js.js'></script>
+    <script src='js/chrome-tabs.js'></script>
+    <script src='js/js.js'></script>
     <script>document.cookie = "oldsmobile=badcar"</script>
   </div>
 
